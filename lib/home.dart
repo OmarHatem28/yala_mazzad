@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class Home extends StatefulWidget {
   Home({Key key, this.title}) : super(key: key);
@@ -12,32 +13,32 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+    List colors = [Colors.red, Colors.green, Colors.yellow, Colors.blue, Colors.tealAccent, Colors.indigo, Colors.yellow];
+    Random random = new Random();
+
     return Scaffold(
-      appBar: AppBar(),
-      drawer: Drawer(
-        child: Column(
-          children: <Widget>[
-            UserAccountsDrawerHeader(
-//              decoration: BoxDecoration(image: DecorationImage(image: AssetImage("img/mazzad.png"))),
-              accountName: Text("Omar Hatem"),
-              accountEmail: Text("Omar@gmail.com"),
-              currentAccountPicture: CircleAvatar(
-                backgroundImage: AssetImage("img/mazzad.png"),
-                radius: 50,
+      appBar: AppBar(title: Text("Home Page"),),
+      drawer: buildDrawer(),
+      body: GridView.count(
+        // Create a grid with 2 columns. If you change the scrollDirection to
+        // horizontal, this would produce 2 rows.
+        crossAxisCount: 2,
+        // Generate 100 Widgets that display their index in the List
+        children: List.generate(100, (index) {
+          int rand = random.nextInt(7);
+          return Card(
+            child: Center(
+              child: Text(
+                'Item $index',
+                style: Theme.of(context).textTheme.headline,
               ),
             ),
-            buildSeparators("Categories"),
-            buildTile("Art", "/art", Icon(Icons.art_track)),
-            buildTile("Furniture", "/furniture", Icon(Icons.home)),
-            Divider(),
-            buildSeparators("Credentials"),
-            buildTile("Login", "/login", Icon(Icons.email)),
-            buildTile("SignUp", "/signUp", Icon(Icons.favorite)),
-            Divider(),
-            buildSeparators("Support"),
-            buildTile("Feedback", "/feedback", Icon(Icons.feedback)),
-          ],
-        ),
+            elevation: 16,
+            color: colors[rand],
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+            margin: EdgeInsets.all(10),
+          );
+        }),
       ),
     );
   }
@@ -61,6 +62,34 @@ class _HomeState extends State<Home> {
               ),
         ) ??
         false;
+  }
+
+  Widget buildDrawer() {
+    return Drawer(
+      child: Column(
+        children: <Widget>[
+          UserAccountsDrawerHeader(
+//              decoration: BoxDecoration(image: DecorationImage(image: AssetImage("img/mazzad.png"))),
+            accountName: Text("Omar Hatem"),
+            accountEmail: Text("Omar@gmail.com"),
+            currentAccountPicture: CircleAvatar(
+              backgroundImage: AssetImage("img/mazzad.png"),
+              radius: 50,
+            ),
+          ),
+          buildSeparators("Categories"),
+          buildTile("Art", "/art", Icon(Icons.art_track)),
+          buildTile("Furniture", "/furniture", Icon(Icons.home)),
+          Divider(),
+          buildSeparators("Credentials"),
+          buildTile("Login", "/login", Icon(Icons.email)),
+          buildTile("SignUp", "/signUp", Icon(Icons.favorite)),
+          Divider(),
+          buildSeparators("Support"),
+          buildTile("Feedback", "/feedback", Icon(Icons.feedback)),
+        ],
+      ),
+    );
   }
 
   Widget buildSeparators(String name) {

@@ -86,7 +86,7 @@ class _LoginState extends State<Login> {
         ),
         shape: StadiumBorder(),
         color: Colors.pinkAccent,
-        splashColor: Colors.green,
+        splashColor: Colors.indigo,
         padding: EdgeInsets.fromLTRB(size.width / 8, 15, size.width / 8, 15),
       ),
     );
