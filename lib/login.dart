@@ -9,6 +9,8 @@ class _LoginState extends State<Login> {
   String username;
   String password;
 
+  String errorUsernamePassword;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -56,15 +58,16 @@ class _LoginState extends State<Login> {
               this.password = text;
           });
         },
-        style: TextStyle(fontSize: 20),
+        style: TextStyle(fontSize: 18),
         decoration: InputDecoration(
-            labelText: fieldName,
-            hintText: fieldName,
-            hintStyle: TextStyle(fontSize: 20),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(30))
+          labelText: fieldName,
+          hintText: fieldName,
+          hintStyle: TextStyle(fontSize: 18),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
+          errorText: errorUsernamePassword,
         ),
       ),
-      margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
+      margin: EdgeInsets.fromLTRB(10, 0, 10, 20),
     );
   }
 
@@ -73,6 +76,8 @@ class _LoginState extends State<Login> {
       margin: EdgeInsets.only(top: 20, bottom: 20),
       child: FlatButton(
         onPressed: () {
+          // TODO: implement validate function
+//          validate();
           Navigator.pop(context);
         },
         child: Text(

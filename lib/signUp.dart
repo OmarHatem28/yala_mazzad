@@ -10,6 +10,9 @@ class _SignUpState extends State<SignUp> {
   String password;
   String email;
 
+  String errorUsernamePassword; // name and password error msg are the same
+  String errorEmail;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -52,23 +55,24 @@ class _SignUpState extends State<SignUp> {
         obscureText: !visible,
         onChanged: (text) {
           setState(() {
-            if ( fieldName == "Username" )
+            if (fieldName == "Username")
               this.username = text;
-            else if ( fieldName == "Password" )
+            else if (fieldName == "Password")
               this.password = text;
             else
               this.email = text;
           });
         },
-        style: TextStyle(fontSize: 20),
+        style: TextStyle(fontSize: 18),
         decoration: InputDecoration(
-            labelText: fieldName,
-            hintText: fieldName,
-            hintStyle: TextStyle(fontSize: 20),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(30))
+          labelText: fieldName,
+          hintText: fieldName,
+          hintStyle: TextStyle(fontSize: 18),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
+          errorText: fieldName == "Email" ? errorEmail : errorUsernamePassword,
         ),
       ),
-      margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
+      margin: EdgeInsets.fromLTRB(10, 0, 10, 20),
     );
   }
 
@@ -77,6 +81,9 @@ class _SignUpState extends State<SignUp> {
       margin: EdgeInsets.only(top: 20, bottom: 20),
       child: FlatButton(
         onPressed: () {
+          // TODO: implement validate function
+//          print(username + " " + password);
+//          validate();
           Navigator.pop(context);
         },
         child: Text(
@@ -101,8 +108,8 @@ class _SignUpState extends State<SignUp> {
           InkWell(
             child: Text(
               "Login from here.",
-              style:
-              TextStyle(color: Colors.lightBlue, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  color: Colors.lightBlue, fontWeight: FontWeight.bold),
             ),
             onTap: () {
               Navigator.pop(context);

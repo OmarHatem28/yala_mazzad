@@ -7,9 +7,6 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
 
-  // TODO: logged in or not using shared preference
-  bool loggedIn = false;
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,6 +19,9 @@ class MyApp extends StatelessWidget {
         '/signUp': (context) => SignUp(),
         '/login': (context) => Login(),
         '/home': (context) => Home(),
+        '/art': (context) => Home(),
+        '/furniture': (context) => Home(),
+        '/feedback': (context) => Home(),
       },
     );
   }
