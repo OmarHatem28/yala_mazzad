@@ -74,7 +74,6 @@ class _LoginState extends State<Login> {
       child: FlatButton(
         onPressed: () {
           Navigator.pop(context);
-          Navigator.pushNamed(context, '/home');
         },
         child: Text(
           "Login",
@@ -103,6 +102,7 @@ class _LoginState extends State<Login> {
                   color: Colors.lightBlue, fontWeight: FontWeight.bold),
             ),
             onTap: () {
+              Navigator.pop(context);
               Navigator.pushNamed(context, '/signUp');
             },
           )

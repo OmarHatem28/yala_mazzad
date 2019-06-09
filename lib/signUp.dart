@@ -78,7 +78,6 @@ class _SignUpState extends State<SignUp> {
       child: FlatButton(
         onPressed: () {
           Navigator.pop(context);
-          Navigator.pushNamed(context, '/home');
         },
         child: Text(
           "Sign Up",
@@ -107,6 +106,7 @@ class _SignUpState extends State<SignUp> {
             ),
             onTap: () {
               Navigator.pop(context);
+              Navigator.pushNamed(context, '/login');
             },
           )
         ],

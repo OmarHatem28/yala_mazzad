@@ -15,10 +15,24 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(),
       drawer: Drawer(
-        child: UserAccountsDrawerHeader(
-          accountName: Text("Omar Hatem"),
-          accountEmail: Text("Omar@gmail.com"),
-          currentAccountPicture: Image.asset("img/mazzad.png"),
+        child: Column(
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              accountName: Text("Omar Hatem"),
+              accountEmail: Text("Omar@gmail.com"),
+              currentAccountPicture: Image.asset("img/mazzad.png"),
+            ),
+            ListTile(
+              leading: Icon(Icons.email),
+              title: Text("Login"),
+              onTap: () => Navigator.pushNamed(context, '/login'),
+            ),
+            ListTile(
+              leading: Icon(Icons.favorite),
+              title: Text("SignUp"),
+              onTap: () => Navigator.pushNamed(context, '/signUp'),
+            )
+          ],
         ),
       ),
     );
