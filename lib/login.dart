@@ -25,7 +25,8 @@ class _LoginState extends State<Login> {
             children: <Widget>[
               buildLogo(size),
               buildInputField("Username", true),
-              buildInputField("Password", passwordVisibility),
+              buildInputField("Password", passwordVisibility, bottom: 5.0),
+              buildForgotPassword(),
               buildLoginButton(size),
               buildSignUpText(size),
             ],
@@ -42,11 +43,11 @@ class _LoginState extends State<Login> {
         height: size.height / 4,
         width: size.width / 2,
       ),
-      margin: EdgeInsets.all(20),
+//      margin: EdgeInsets.all(20),
     );
   }
 
-  Widget buildInputField(String fieldName, bool visible) {
+  Widget buildInputField(String fieldName, bool visible, {bottom = 20.0}) {
     return Container(
 //      padding: EdgeInsets.only(left: 20, right: 15),
       child: TextField(
@@ -69,7 +70,7 @@ class _LoginState extends State<Login> {
           suffixIcon: fieldName == 'Password' ? buildEye(visible) : null,
         ),
       ),
-      margin: EdgeInsets.fromLTRB(25, 0, 25, 20),
+      margin: EdgeInsets.fromLTRB(25, 0, 25, bottom),
     );
   }
 
@@ -106,7 +107,10 @@ class _LoginState extends State<Login> {
               "SignUp Now",
               softWrap: true,
               style: TextStyle(
-                  color: Colors.lightBlue, fontWeight: FontWeight.bold),
+                color: Colors.lightBlue,
+                fontWeight: FontWeight.bold,
+                decoration: TextDecoration.underline,
+              ),
             ),
             onTap: () {
               Navigator.pop(context);
@@ -126,5 +130,45 @@ class _LoginState extends State<Login> {
             passwordVisibility = !passwordVisibility;
           });
         });
+  }
+
+  Widget buildForgotPassword() {
+    return Container(
+      margin: EdgeInsets.only(left: 45),
+      child: Align(
+          child: InkWell(
+            child: Text(
+              "Forgot Password?!",
+              style: TextStyle(
+                color: Color(0xff325da3),
+                fontWeight: FontWeight.bold,
+                decoration: TextDecoration.underline,
+              ),
+            ),
+            onTap: () => forgotPassword(),
+          ),
+          alignment: Alignment.centerLeft),
+    );
+  }
+
+  Future<bool> forgotPassword() {
+    return showDialog(
+      context: context,
+      builder: (context) => new AlertDialog(
+        title: new Text('You Really Forgot Your Password?!!!'),
+        content: new Text('Are you really that dumb?'),
+        actions: <Widget>[
+          new FlatButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: new Text('Yes'),
+          ),
+          new FlatButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: new Text('No'),
+          ),
+        ],
+      ),
+    ) ??
+        false;
   }
 }

@@ -108,7 +108,10 @@ class _SignUpState extends State<SignUp> {
             child: Text(
               "Login from here.",
               style: TextStyle(
-                  color: Colors.lightBlue, fontWeight: FontWeight.bold),
+                color: Colors.lightBlue,
+                fontWeight: FontWeight.bold,
+                decoration: TextDecoration.underline,
+              ),
             ),
             onTap: () {
               Navigator.pop(context);
