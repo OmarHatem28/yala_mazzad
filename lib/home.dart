@@ -13,28 +13,37 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    List colors = [Colors.red, Colors.green, Colors.yellow, Colors.blue, Colors.tealAccent, Colors.indigo, Colors.yellow];
+    List<Color> colors1 = [Colors.lightBlue, Colors.indigo];
+    List<Color> colors2 = [Colors.orange, Colors.red];
+//    List<Color> colors3 = [Colors.gra, Colors.deepOrangeAccent, Colors.deepOrange, Colors.red];
+    List<List<Color>> all_colors = [ colors1, colors2 ];
     Random random = new Random();
 
     return Scaffold(
       appBar: AppBar(title: Text("Home Page"),),
       drawer: buildDrawer(),
       body: GridView.count(
-        // Create a grid with 2 columns. If you change the scrollDirection to
-        // horizontal, this would produce 2 rows.
         crossAxisCount: 2,
-        // Generate 100 Widgets that display their index in the List
         children: List.generate(100, (index) {
-          int rand = random.nextInt(7);
+          int rand = random.nextInt(2);
           return Card(
-            child: Center(
-              child: Text(
-                'Item $index',
-                style: Theme.of(context).textTheme.headline,
+            child: Container(
+              child: Center(
+                child: Text(
+                  'Item $index',
+                  style: Theme.of(context).textTheme.headline,
+                ),
+              ),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: all_colors[rand],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                )
               ),
             ),
             elevation: 16,
-            color: colors[rand],
+//            color: colors[rand],
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
             margin: EdgeInsets.all(10),
           );

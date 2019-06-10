@@ -10,6 +10,7 @@ class _LoginState extends State<Login> {
   String password;
 
   String errorUsernamePassword;
+  bool passwordVisibility = false;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class _LoginState extends State<Login> {
             children: <Widget>[
               buildLogo(size),
               buildInputField("Username", true),
-              buildInputField("Password", false),
+              buildInputField("Password", passwordVisibility),
               buildLoginButton(size),
               buildSignUpText(size),
             ],
@@ -47,7 +48,7 @@ class _LoginState extends State<Login> {
 
   Widget buildInputField(String fieldName, bool visible) {
     return Container(
-      padding: EdgeInsets.only(left: 20, right: 15),
+//      padding: EdgeInsets.only(left: 20, right: 15),
       child: TextField(
         obscureText: !visible,
         onChanged: (text) {
@@ -65,9 +66,10 @@ class _LoginState extends State<Login> {
           hintStyle: TextStyle(fontSize: 18),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
           errorText: errorUsernamePassword,
+          suffixIcon: fieldName == 'Password' ? buildEye(visible) : null,
         ),
       ),
-      margin: EdgeInsets.fromLTRB(10, 0, 10, 20),
+      margin: EdgeInsets.fromLTRB(25, 0, 25, 20),
     );
   }
 
@@ -114,5 +116,15 @@ class _LoginState extends State<Login> {
         ],
       ),
     );
+  }
+
+  Widget buildEye(bool visible) {
+    return IconButton(
+        icon: Icon(visible ? Icons.visibility_off : Icons.visibility),
+        onPressed: () {
+          setState(() {
+            passwordVisibility = !passwordVisibility;
+          });
+        });
   }
 }

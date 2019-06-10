@@ -50,7 +50,6 @@ class _SignUpState extends State<SignUp> {
 
   Widget buildInputField(String fieldName, bool visible) {
     return Container(
-      padding: EdgeInsets.only(left: 20, right: 15),
       child: TextField(
         obscureText: !visible,
         onChanged: (text) {
@@ -72,7 +71,7 @@ class _SignUpState extends State<SignUp> {
           errorText: fieldName == "Email" ? errorEmail : errorUsernamePassword,
         ),
       ),
-      margin: EdgeInsets.fromLTRB(10, 0, 10, 20),
+      margin: EdgeInsets.fromLTRB(25, 0, 25, 20),
     );
   }
 
