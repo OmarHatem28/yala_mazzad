@@ -87,15 +87,16 @@ class _HomeState extends State<Home> {
             ),
           ),
           buildSeparators("Categories"),
-          buildTile("Art", "/art", Icon(Icons.art_track)),
-          buildTile("Furniture", "/furniture", Icon(Icons.home)),
+          buildTile("Art", "/art", Image.asset('img/art.png', scale: 1.2,)),
+          buildTile("Laptops", "/laptops", Image.asset('img/laptop1.png', scale: 1.2,)),
+          buildTile("Furniture", "/furniture", Image.asset('img/sofa.png', scale: 1.2,)),
           Divider(),
           buildSeparators("Credentials"),
-          buildTile("Login", "/login", Icon(Icons.email)),
-          buildTile("SignUp", "/signUp", Icon(Icons.favorite)),
+          buildTile("Login", "/login", Image.asset('img/login_ico.png', scale: 1.8,)),
+          buildTile("SignUp", "/signUp", Image.asset('img/registeration_ico.png', scale: 1.2,)),
           Divider(),
           buildSeparators("Support"),
-          buildTile("Feedback", "/feedback", Icon(Icons.feedback)),
+          buildTile("Feedback", "/feedback", Image.asset('img/feedback.png', scale: 1.2,)),
         ],
       ),
     );
@@ -114,7 +115,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget buildTile(String name, String path, Icon icon) {
+  Widget buildTile(String name, String path, Widget icon) {
     return ListTile(
       leading: icon,
       title: Text(name),

@@ -47,6 +47,18 @@ flutter:
 
   assets:
     - img/mazzad.png
+    - img/sofa.png
+    - img/art.png
+    - img/feedback.png
+    - img/laptop1.png
+    - img/laptop2.png
+    - img/badges_colored.png
+    - img/check_list.png
+    - img/complete.png
+    - img/home.png
+    - img/login_ico.png
+    - img/profile.png
+    - img/registeration_ico.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
