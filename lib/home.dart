@@ -61,7 +61,10 @@ class _HomeState extends State<Home> {
               child: Card(
                 elevation: 2,
                 child: Container(
-                  child: buildTitle(categories[i]['title']),
+                  child: Container(
+                    color: Color.fromRGBO(0, 0, 0, 0.4),
+                    child: buildTitle(categories[i]['title']),
+                  ),
                   decoration: BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage(categories[i]['img']),
