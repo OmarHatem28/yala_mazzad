@@ -140,95 +140,61 @@ class _HomeState extends State<Home> {
               child: ListView(
                 shrinkWrap: true,
                 children: <Widget>[
-                  buildSeparators("Categories"),
+                  buildSeparators("Registeration"),
                   buildTile(
-                      "Art",
-                      "/art",
-                      Image.asset(
-                        'img/art.png',
-                        scale: 1.2,
-                      )),
+                    "Login",
+                    "/login",
+                    'img/login.png',
+                  ),
                   buildTile(
-                      "Laptops",
-                      "/laptops",
-                      Image.asset(
-                        'img/laptop1.png',
-                        scale: 1.2,
-                      )),
-                  buildTile(
-                      "Furniture",
-                      "/furniture",
-                      Image.asset(
-                        'img/sofa.png',
-                        scale: 1.2,
-                      )),
-                  buildTile(
-                      "Art",
-                      "/art",
-                      Image.asset(
-                        'img/art.png',
-                        scale: 1.2,
-                      )),
-                  buildTile(
-                      "Laptops",
-                      "/laptops",
-                      Image.asset(
-                        'img/laptop1.png',
-                        scale: 1.2,
-                      )),
-                  buildTile(
-                      "Furniture",
-                      "/furniture",
-                      Image.asset(
-                        'img/sofa.png',
-                        scale: 1.2,
-                      )),
-                  buildTile(
-                      "Art",
-                      "/art",
-                      Image.asset(
-                        'img/art.png',
-                        scale: 1.2,
-                      )),
-                  buildTile(
-                      "Laptops",
-                      "/laptops",
-                      Image.asset(
-                        'img/laptop1.png',
-                        scale: 1.2,
-                      )),
-                  buildTile(
-                      "Furniture",
-                      "/furniture",
-                      Image.asset(
-                        'img/sofa.png',
-                        scale: 1.2,
-                      )),
+                    "SignUp",
+                    "/signUp",
+                    'img/registeration_ico.png',
+                  ),
                   Divider(),
-                  buildSeparators("Credentials"),
+                  buildSeparators("Help Center"),
                   buildTile(
-                      "Login",
-                      "/login",
-                      Image.asset(
-                        'img/login_ico.png',
-                        scale: 1.8,
-                      )),
+                    "Feedback",
+                    "/feedback",
+                    'img/feedback.png',
+                  ),
                   buildTile(
-                      "SignUp",
-                      "/signUp",
-                      Image.asset(
-                        'img/registeration_ico.png',
-                        scale: 1.2,
-                      )),
+                    "How to order",
+                    "/feedback",
+                    'img/info.png',
+                  ),
+                  buildTile(
+                    "Shipping",
+                    "/feedback",
+                    'img/shipping.png',
+                  ),
+                  buildTile(
+                    "Questions and Assistance",
+                    "/feedback",
+                    'img/assistance.png',
+                  ),
+                  buildTile(
+                    "About payment",
+                    "/feedback",
+                    'img/visa.png',
+                  ),
                   Divider(),
-                  buildSeparators("Support"),
+                  buildSeparators("Public Policy"),
                   buildTile(
-                      "Feedback",
-                      "/feedback",
-                      Image.asset(
-                        'img/feedback.png',
-                        scale: 1.2,
-                      )),
+                    "Privacy Policy",
+                    "/feedback",
+                    'img/policy.png',
+                  ),
+                  buildTile(
+                    "Terms and Conditions",
+                    "/feedback",
+                    'img/terms.png',
+                  ),
+                  buildTile(
+                    "Return Policy",
+                    "/feedback",
+                    'img/refund.png',
+                  ),
                 ],
               ))
         ],
@@ -252,11 +218,19 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget buildTile(String name, String path, Widget icon) {
+  Widget buildTile(String name, String path, String imgPath) {
     return ListTile(
-      leading: icon,
+      leading: Image.asset(
+        imgPath,
+        scale: 1.2,
+      ),
       title: Text(name),
-      onTap: () => Navigator.pushNamed(context, path),
+      onTap: () {
+        if ( path != '/login' && path != '/signUp' )
+          Navigator.pop(context);
+        else
+          Navigator.pushNamed(context, path);
+      },
     );
   }
 }
