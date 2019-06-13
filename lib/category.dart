@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-//import 'package:yala_mazad/Product.dart';
+import 'package:yala_mazad/Product.dart';
 
 class Category extends StatefulWidget {
   final String title;
@@ -21,7 +21,6 @@ class _CategoryState extends State<Category> {
       ),
       body: Column(
         children: <Widget>[
-          // TODO: change Carousel to Swiper
           Expanded(
             child: buildSwiper(),
             flex: 2,
@@ -32,7 +31,7 @@ class _CategoryState extends State<Category> {
           ),
           Expanded(
             child: Container(
-//              child: Product(),
+              child: Product(),
             ),
             flex: 4,
           )
@@ -84,6 +83,7 @@ class _CategoryState extends State<Category> {
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: InkWell(
+        splashColor: Colors.lightBlueAccent,
         onTap: () {},
         child: Container(
           margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
