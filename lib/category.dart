@@ -21,7 +21,6 @@ class _CategoryState extends State<Category> {
       ),
       body: Column(
         children: <Widget>[
-          // TODO: change Carousel to Swiper
           Expanded(
             child: buildSwiper(),
             flex: 2,
@@ -84,6 +83,7 @@ class _CategoryState extends State<Category> {
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: InkWell(
+        splashColor: Colors.lightBlueAccent,
         onTap: () {},
         child: Container(
           margin: EdgeInsets.fromLTRB(10, 5, 10, 5),

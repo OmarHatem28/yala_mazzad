@@ -1,222 +1,189 @@
 import 'package:flutter/material.dart';
+import 'package:yala_mazad/models/single_product.dart';
 
-class Product_details extends StatefulWidget {
+class ProductDetails extends StatefulWidget {
+  final productDetailsName;
+  final productDetailsOldPrice;
+  final productDetailsNewPrice;
+  final productDetailsPicture;
 
-  final product_details_name;
-  final product_details_oldprice;
-  final product_details_price;
-  final product_details_picture;
-
-  Product_details({
-    this.product_details_name,
-    this.product_details_picture,
-    this.product_details_oldprice,
-    this.product_details_price
-
-  });
-
-
-
+  ProductDetails(
+      {this.productDetailsName,
+      this.productDetailsPicture,
+      this.productDetailsOldPrice,
+      this.productDetailsNewPrice});
 
   @override
-  _Product_detailsState createState() => _Product_detailsState();
+  _ProductDetailsState createState() => _ProductDetailsState();
 }
 
-class _Product_detailsState extends State<Product_details> {
+class _ProductDetailsState extends State<ProductDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(
+      appBar: AppBar(
         elevation: 0.0,
         title: Text("Back to Shopping"),
-        actions: <Widget>[
-          new IconButton(icon: Icon(Icons.search, color: Colors.white,), onPressed: null),
-        ],
       ),
-
-      //-----------------------------------------------------------Received passed data from Home page -------------------------
       body: ListView(
         children: <Widget>[
-          new Container(
-            height: 200.0,
-              child: GridTile(
-                  child: Container(
-                color:Colors.white,
-                child: Image.asset(widget.product_details_picture, fit: BoxFit.fitHeight,),
-              ),
-                footer: new Container(
-
-                  color:Colors.white,
-                  child: ListTile(
-                    leading: new Text(widget.product_details_name,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0)),
-
-                    title: Row(
-                      children: <Widget>[
-                        Expanded(child: Text(
-                          "\$${widget.product_details_oldprice}",
-                          style: TextStyle(
-                              color: Colors.black54,
-                              fontWeight: FontWeight.w800,
-                              decoration: TextDecoration.lineThrough),
-                        ),
-                        ),
-
-                        Expanded(child: Text("\$${widget.product_details_price}",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w800, color: Colors.red)),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                ),
-              ),
-          ),
-
-          //-----------------------------------------------------------------------------------------------------------
-
-
-          //----------------------------------Buttons size , color , Qty-------------------------------------------------
-
-          Row(
-            children: <Widget>[
-              Expanded(child: MaterialButton(onPressed: (){
-
-                showDialog(context: context,
-                builder: (context){
-                  return new AlertDialog(
-                  title: new Text("Size"),
-                  content: new Text("Choose the size"),
-                  actions: <Widget>[
-                    new MaterialButton(onPressed:(){
-                      Navigator.of(context).pop(context);
-                  },
-
-                  child: new Text("close"),
-
-                  )
-                  ],
-
-                  );
-                }
-                );
-              },
-              color: Colors.white,
-                textColor: Colors.grey,
-                elevation: 0.2,
-
-                child: Row(
-                  children: <Widget>[
-                    Expanded(child: new Text("size")),
-                    Expanded(child: new Icon(Icons.arrow_drop_down))
-                  ],
-                ),
-
-              )),
-              Expanded(child: MaterialButton(onPressed: (){
-
-                showDialog(context: context,
-                    builder: (context){
-                      return new AlertDialog(
-                        title: new Text("Color"),
-                        content: new Text("Choose the color"),
-                        actions: <Widget>[
-                          new MaterialButton(onPressed:(){
-                            Navigator.of(context).pop(context);
-                          },
-
-                            child: new Text("close"),
-
-                          )
-                        ],
-
-                      );
-                    }
-                );
-              },
-                color: Colors.white,
-                textColor: Colors.grey,
-                elevation: 0.2,
-
-                child: Row(
-                  children: <Widget>[
-                    Expanded(child: new Text("Color")),
-                    Expanded(child: new Icon(Icons.arrow_drop_down))
-                  ],
-                ),
-
-              )),
-              Expanded(child: MaterialButton(onPressed: (){
-
-                showDialog(context: context,
-                    builder: (context){
-                      return new AlertDialog(
-                        title: new Text("Quantity"),
-                        content: new Text("Choose the Quantity  "),
-                        actions: <Widget>[
-                          new MaterialButton(onPressed:(){
-                            Navigator.of(context).pop(context);
-                          },
-
-                            child: new Text("close"),
-
-                          )
-                        ],
-
-                      );
-                    }
-                );
-              },
-                color: Colors.white,
-                textColor: Colors.grey,
-                elevation: 0.2,
-
-                child: Row(
-                  children: <Widget>[
-                    Expanded(child: new Text("Qty")),
-                    Expanded(child: new Icon(Icons.arrow_drop_down))
-                  ],
-                ),
-
-              ))
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Expanded(child: MaterialButton(
-                onPressed: (){},
-                color: Colors.pink,
-                textColor: Colors.white,
-                elevation: 0.2,
-                child: new Text("Buy now")
-
-              )
-              ),
-              new IconButton(icon: Icon(Icons.add_shopping_cart) ,color: Colors.pink, onPressed: (){}),
-              new IconButton(icon: Icon(Icons.favorite_border) ,color: Colors.pink, onPressed: (){})
-
-            ],
-          ),
-
-          //-----------------------------------------------------------------------------------------------------
-
-            Divider(),
-          //-------------------------------------------- Product Description ----------------------------------------------
-            new ListTile(
-              title: new Text("Product Details"),
-              subtitle: new Text("s;fjlsjeflejfknkshfksfhhsfjkshlshfkfhls"),
-
-            ),
+          buildProduct(),
+          buildChoicesRow(),
+          buildBuyRow(),
           Divider(),
-
-
-
-
-
+          buildDescription(),
+          Divider(),
         ],
       ),
     );
   }
-}
 
+  // TODO: Change text UI
+  Widget buildProduct() {
+    return Container(
+      height: 200.0,
+      child: GridTile(
+        child: Container(
+          color: Colors.white,
+          child: Image.asset(
+            widget.productDetailsPicture,
+            fit: BoxFit.fitHeight,
+          ),
+        ),
+        footer: Container(
+          color: Colors.white,
+          child: ListTile(
+            leading: Text(widget.productDetailsName,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0)),
+            title: Row(
+              children: <Widget>[
+                Expanded(
+                  child: Text(
+                    "\$${widget.productDetailsOldPrice}",
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w400,
+                        decoration: TextDecoration.lineThrough),
+                  ),
+                ),
+                Expanded(
+                  child: Text("\$${widget.productDetailsNewPrice}",
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w800, color: Colors.red)),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildChoicesRow() {
+    return Container(
+      color: Color(0xffe5e3e3),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Container(
+              child: buildChoiceButton("Size"),
+              margin: EdgeInsets.all(5),
+            ),
+            flex: 3,
+          ),
+          Expanded(
+              child: Container(
+                child: buildChoiceButton("Color"),
+                margin: EdgeInsets.all(5),
+              ),
+              flex: 3),
+          Expanded(
+            child: Container(
+              child: buildChoiceButton("Quantity"),
+              margin: EdgeInsets.all(5),
+            ),
+            flex: 4,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildChoiceButton(String text) {
+    return MaterialButton(
+      color: Colors.white,
+      textColor: Colors.grey,
+      elevation: 0.2,
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Text(
+              text,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+            ),
+            flex: 2,
+          ),
+          Expanded(child: Icon(Icons.arrow_drop_down))
+        ],
+      ),
+      onPressed: () {
+        showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: Text(text),
+                content: Text("Choose the $text"),
+                actions: <Widget>[
+                  MaterialButton(
+                    onPressed: () {
+                      Navigator.of(context).pop(context);
+                    },
+                    child: Text("close"),
+                  )
+                ],
+              );
+            });
+      },
+    );
+  }
+
+  Widget buildBuyRow() {
+    return Container(
+      margin: EdgeInsets.only(left: 10),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+              child: MaterialButton(
+                  onPressed: () {},
+                  color: Colors.pink,
+                  textColor: Colors.white,
+                  elevation: 0.2,
+                  child: Text("Buy now"))),
+          IconButton(
+              icon: Icon(Icons.add_shopping_cart),
+              color: Colors.pink,
+              onPressed: () {}),
+          IconButton(
+              icon: Icon(Icons.favorite_border),
+              color: Colors.pink,
+              onPressed: () {})
+        ],
+      ),
+    );
+  }
+
+  Widget buildDescription() {
+    return ListTile(
+      title: Text("${widget.productDetailsName} Details"),
+      subtitle: Text(
+          "A very valuable item that will surly stun anyone who look at it, Give it a try. The sure thing is that you won't regret it."),
+    );
+  }
+}
