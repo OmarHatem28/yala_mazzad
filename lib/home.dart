@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
+import 'package:yala_mazad/category.dart';
 
 class Home extends StatefulWidget {
   Home({Key key, this.title}) : super(key: key);
@@ -11,43 +11,89 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  var categories = [
+    {
+      'title': 'Women',
+      'img': 'img/dress.jpg',
+    },
+    {
+      'title': 'Men',
+      'img': 'img/men.jpg',
+    },
+    {
+      'title': 'Kids',
+      'img': 'img/children.jpg',
+    },
+    {
+      'title': 'House',
+      'img': 'img/house.jpg',
+    },
+    {
+      'title': 'Cars',
+      'img': 'img/cars.jpg',
+    },
+    {
+      'title': 'Electronics',
+      'img': 'img/electronics.jpg',
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
-    List<Color> colors1 = [Colors.lightBlue, Colors.indigo];
-    List<Color> colors2 = [Colors.orange, Colors.red];
-//    List<Color> colors3 = [Colors.gra, Colors.deepOrangeAccent, Colors.deepOrange, Colors.red];
-    List<List<Color>> all_colors = [ colors1, colors2 ];
-    Random random = new Random();
-
     return Scaffold(
-      appBar: AppBar(title: Text("Home Page"),),
+      appBar: AppBar(
+        title: Text("Categories"),
+      ),
       drawer: buildDrawer(),
-      body: GridView.count(
-        crossAxisCount: 2,
-        children: List.generate(100, (index) {
-          int rand = random.nextInt(2);
-          return Card(
+      body: buildBody(),
+    );
+  }
+
+  Widget buildBody() {
+    return GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2, childAspectRatio: 0.8),
+        itemCount: 6,
+        itemBuilder: (context, i) {
+          return InkWell(
             child: Container(
-              child: Center(
-                child: Text(
-                  'Item $index',
-                  style: Theme.of(context).textTheme.headline,
+              margin: EdgeInsets.all(5),
+              child: Card(
+                elevation: 2,
+                child: Container(
+                  child: buildTitle(categories[i]['title']),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(categories[i]['img']),
+                        fit: BoxFit.fill),
+                  ),
                 ),
               ),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: all_colors[rand],
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                )
-              ),
             ),
-            elevation: 16,
-//            color: colors[rand],
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-            margin: EdgeInsets.all(10),
+            onTap: () => {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Category(
+                                title: categories[i]['title'],
+                              )))
+                },
           );
-        }),
+        });
+  }
+
+  Widget buildTitle(String title) {
+    return Center(
+      child: Container(
+        child: Text(
+          title,
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+        ),
+        padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+        decoration: BoxDecoration(
+            border: Border.all(
+                width: 2, color: Colors.white, style: BorderStyle.solid)),
       ),
     );
   }
@@ -77,26 +123,114 @@ class _HomeState extends State<Home> {
     return Drawer(
       child: Column(
         children: <Widget>[
-          UserAccountsDrawerHeader(
+          Expanded(
+            flex: 2,
+            child: UserAccountsDrawerHeader(
 //              decoration: BoxDecoration(image: DecorationImage(image: AssetImage("img/mazzad.png"))),
-            accountName: Text("Omar Hatem"),
-            accountEmail: Text("Omar@gmail.com"),
-            currentAccountPicture: CircleAvatar(
-              backgroundImage: AssetImage("img/mazzad.png"),
-              radius: 50,
+              accountName: Text("Omar Hatem"),
+              accountEmail: Text("Omar@gmail.com"),
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: AssetImage("img/mazzad.png"),
+                radius: 50,
+              ),
             ),
           ),
-          buildSeparators("Categories"),
-          buildTile("Art", "/art", Image.asset('img/art.png', scale: 1.2,)),
-          buildTile("Laptops", "/laptops", Image.asset('img/laptop1.png', scale: 1.2,)),
-          buildTile("Furniture", "/furniture", Image.asset('img/sofa.png', scale: 1.2,)),
-          Divider(),
-          buildSeparators("Credentials"),
-          buildTile("Login", "/login", Image.asset('img/login_ico.png', scale: 1.8,)),
-          buildTile("SignUp", "/signUp", Image.asset('img/registeration_ico.png', scale: 1.2,)),
-          Divider(),
-          buildSeparators("Support"),
-          buildTile("Feedback", "/feedback", Image.asset('img/feedback.png', scale: 1.2,)),
+          Expanded(
+              flex: 5,
+              child: ListView(
+                shrinkWrap: true,
+                children: <Widget>[
+                  buildSeparators("Categories"),
+                  buildTile(
+                      "Art",
+                      "/art",
+                      Image.asset(
+                        'img/art.png',
+                        scale: 1.2,
+                      )),
+                  buildTile(
+                      "Laptops",
+                      "/laptops",
+                      Image.asset(
+                        'img/laptop1.png',
+                        scale: 1.2,
+                      )),
+                  buildTile(
+                      "Furniture",
+                      "/furniture",
+                      Image.asset(
+                        'img/sofa.png',
+                        scale: 1.2,
+                      )),
+                  buildTile(
+                      "Art",
+                      "/art",
+                      Image.asset(
+                        'img/art.png',
+                        scale: 1.2,
+                      )),
+                  buildTile(
+                      "Laptops",
+                      "/laptops",
+                      Image.asset(
+                        'img/laptop1.png',
+                        scale: 1.2,
+                      )),
+                  buildTile(
+                      "Furniture",
+                      "/furniture",
+                      Image.asset(
+                        'img/sofa.png',
+                        scale: 1.2,
+                      )),
+                  buildTile(
+                      "Art",
+                      "/art",
+                      Image.asset(
+                        'img/art.png',
+                        scale: 1.2,
+                      )),
+                  buildTile(
+                      "Laptops",
+                      "/laptops",
+                      Image.asset(
+                        'img/laptop1.png',
+                        scale: 1.2,
+                      )),
+                  buildTile(
+                      "Furniture",
+                      "/furniture",
+                      Image.asset(
+                        'img/sofa.png',
+                        scale: 1.2,
+                      )),
+                  Divider(),
+                  buildSeparators("Credentials"),
+                  buildTile(
+                      "Login",
+                      "/login",
+                      Image.asset(
+                        'img/login_ico.png',
+                        scale: 1.8,
+                      )),
+                  buildTile(
+                      "SignUp",
+                      "/signUp",
+                      Image.asset(
+                        'img/registeration_ico.png',
+                        scale: 1.2,
+                      )),
+                  Divider(),
+                  buildSeparators("Support"),
+                  buildTile(
+                      "Feedback",
+                      "/feedback",
+                      Image.asset(
+                        'img/feedback.png',
+                        scale: 1.2,
+                      )),
+                ],
+              ))
         ],
       ),
     );
@@ -109,7 +243,10 @@ class _HomeState extends State<Home> {
         Padding(padding: EdgeInsets.only(left: 10)),
         Text(
           name,
-          style: TextStyle(fontStyle: FontStyle.italic, fontWeight: FontWeight.bold, fontSize: 12),
+          style: TextStyle(
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.bold,
+              fontSize: 12),
         ),
       ],
     );
