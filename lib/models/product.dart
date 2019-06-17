@@ -9,6 +9,12 @@ class Product extends StatefulWidget {
 class _ProductState extends State<Product> {
   var productList = [
     {
+      "name": "Women Bag",
+      "picture": "img/products/womenbag.png",
+      "old price": 120,
+      "price": 85.99
+    },
+    {
       "name": "Blazzer1",
       "picture": "img/products/blazer1.jpeg",
       "old price": 120,
@@ -30,7 +36,7 @@ class _ProductState extends State<Product> {
       "name": "Dress",
       "picture": "img/products/dress2.jpeg",
       "old price": 120,
-      "price": 85
+      "price": 85.99
     },
     {
       "name": "Hills",

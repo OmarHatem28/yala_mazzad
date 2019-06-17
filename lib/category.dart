@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:yala_mazad/Product.dart';
+import 'package:yala_mazad/models/product.dart';
 
 class Category extends StatefulWidget {
   final String title;
