@@ -1,16 +1,8 @@
-# yala_mazad
+# Flutter UI Challenges
 
-A new Flutter application.
+E commerce application using Flutter.
+Users can navigate through different categories and choose the items they like and add them to their favorites or add them to their cart
 
-## Getting Started
+## Screenshots
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+<img src="screenshots/categories.jpg" height="720px" >  <img src="screenshots/items.jpg" height="720px" >  <img src="screenshots/itemDetails.jpg" height="720px" >  <img src="screenshots/drawer.jpg" height="720px" >  
