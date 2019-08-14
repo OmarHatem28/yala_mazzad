@@ -131,9 +131,9 @@ class _HomeState extends State<Home> {
             child: UserAccountsDrawerHeader(
 //              decoration: BoxDecoration(image: DecorationImage(image: AssetImage("img/mazzad.png"))),
               accountName: Text("Omar Hatem"),
-              accountEmail: Text("Omar@gmail.com"),
+              accountEmail: Text("omarh.ismail1@gmail.com"),
               currentAccountPicture: CircleAvatar(
-                backgroundImage: AssetImage("img/mazzad.png"),
+                backgroundImage: AssetImage("img/logo.png"),
                 radius: 50,
               ),
             ),
