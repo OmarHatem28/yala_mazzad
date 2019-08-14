@@ -5,7 +5,7 @@ Users can navigate through different categories and choose the items they like a
 
 ## Screenshots
 
-<img src="screenshots/categories.jpg" height="720px" >  <img src="screenshots/items.jpg" height="720px" >  <img src="screenshots/itemDetails.jpg" height="720px" >  <img src="screenshots/drawer.jpg" height="720px" >  
+<img src="screenshots/categories.jpg" height="720px" >  <img src="screenshots/items.jpg" height="720px" >  <img src="screenshots/itemDetails.jpg" height="720px" >  <img src="screenshots/drawer2.jpg" height="720px" >  
 
 
 ## License
